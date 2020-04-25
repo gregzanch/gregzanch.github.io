@@ -1,57 +1,113 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useState } from 'react';
+import background from './res/cold-leaves-background-blurred.png';
+import {
+	FontAwesomeIcon
+} from "@fortawesome/react-fontawesome";
+import {
+	faGithub,
+	faLinkedin,
+	IconDefinition
+} from '@fortawesome/free-brands-svg-icons'
+import {
+	faEnvelope,
+	faArchive,
+	faGlobe,
+	faUser,
+	// faFileAlt,
+	faBookmark
+	// faLayerGroup
+} from '@fortawesome/free-solid-svg-icons';
+import Home from "./components/views/home";
+import About from "./components/views/about";
+import Projects from "./components/views/projects";
+import Resources from "./components/views/resources";
+import Posts from "./components/views/posts";
+
 import './App.css';
 
+interface IRouteLink {
+	text: string;
+	icon?: IconDefinition;
+	onClick: (e: React.MouseEvent) => void;
+}
+
+function RouteLink(props: IRouteLink) {
+	return (
+		<div className="route-link">
+			<button className="icon-link" id={props.text.toLowerCase()} onClick={props.onClick}>
+				{props.icon ? <FontAwesomeIcon icon={props.icon} size="sm" /> : ""}
+				<div className="icon-link-text">{props.text}</div>
+			</button>
+		</div>
+	);
+}
+
 function App() {
+	const [view, setView] = useState("home");
+	const routeLinkHander = (e: React.MouseEvent) => {
+		setView(e.currentTarget.id || "home");
+	}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+		<div className="App">
+			<img
+				src={background}
+				alt="cold-leaves"
+				className="background-image"
+			/>
+
+			<div className="route-links">
+				<RouteLink
+					text="About"
+					icon={faUser}
+					onClick={routeLinkHander}
+				/>
+				<RouteLink
+					text="Projects"
+					icon={faArchive}
+					onClick={routeLinkHander}
+				/>
+				<RouteLink
+					text="Posts"
+					icon={faBookmark}
+					onClick={routeLinkHander}
+				/>
+				<RouteLink
+					text="Resources"
+					icon={faGlobe}
+					onClick={routeLinkHander}
+				/>
+			</div>
+			<div className="view-wrapper">
+				<Home visible={view === "home"} />
+				<About visible={view === "about"} />
+				<Projects visible={view === "projects"} />
+				<Posts visible={view === "posts"} />
+				<Resources visible={view === "resources"} />
+			</div>
+			<div className="connect">
+				<a
+					href="mailto:zanchelli.greg@gmail.com"
+					className="icon-link"
+					target="_blank"
+					rel="noopener noreferrer">
+					<FontAwesomeIcon icon={faEnvelope} size="1x" />
+				</a>
+				<a
+					href="https://github.com/gregzanch"
+					className="icon-link"
+					target="_blank"
+					rel="noopener noreferrer">
+					<FontAwesomeIcon icon={faGithub} size="1x" />
+				</a>
+				<a
+					href="https://www.linkedin.com/in/greg-zanchelli-40268a190/"
+					className="icon-link"
+					target="_blank"
+					rel="noopener noreferrer">
+					<FontAwesomeIcon icon={faLinkedin} size="1x" />
+				</a>
+			</div>
+		</div>
   );
 }
 
