@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/gregzanch/gregzanch.github.io/static/css/main.aecfc708.chunk.css",
+    "main.js": "/gregzanch/gregzanch.github.io/static/js/main.9bee1262.chunk.js",
+    "main.js.map": "/gregzanch/gregzanch.github.io/static/js/main.9bee1262.chunk.js.map",
+    "runtime-main.js": "/gregzanch/gregzanch.github.io/static/js/runtime-main.ae118953.js",
+    "runtime-main.js.map": "/gregzanch/gregzanch.github.io/static/js/runtime-main.ae118953.js.map",
+    "static/js/2.e2814fa0.chunk.js": "/gregzanch/gregzanch.github.io/static/js/2.e2814fa0.chunk.js",
+    "static/js/2.e2814fa0.chunk.js.map": "/gregzanch/gregzanch.github.io/static/js/2.e2814fa0.chunk.js.map",
+    "index.html": "/gregzanch/gregzanch.github.io/index.html",
+    "precache-manifest.20097cd63544377131fed818d29bced8.js": "/gregzanch/gregzanch.github.io/precache-manifest.20097cd63544377131fed818d29bced8.js",
+    "service-worker.js": "/gregzanch/gregzanch.github.io/service-worker.js",
+    "static/css/main.aecfc708.chunk.css.map": "/gregzanch/gregzanch.github.io/static/css/main.aecfc708.chunk.css.map",
+    "static/js/2.e2814fa0.chunk.js.LICENSE.txt": "/gregzanch/gregzanch.github.io/static/js/2.e2814fa0.chunk.js.LICENSE.txt",
+    "static/media/cold-leaves-background-blurred.png": "/gregzanch/gregzanch.github.io/static/media/cold-leaves-background-blurred.8adf1451.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ae118953.js",
+    "static/js/2.e2814fa0.chunk.js",
+    "static/css/main.aecfc708.chunk.css",
+    "static/js/main.9bee1262.chunk.js"
+  ]
+}
