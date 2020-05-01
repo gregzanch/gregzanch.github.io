@@ -2,13 +2,14 @@ import React from "react";
 import "./card.css";
 
 export interface CardProps {
-  children?: React.ReactNodeArray
+  children?: React.ReactNode | React.ReactNode[];
+  link?: string;
 }
 
 export default function Card(props: CardProps) {
   return (
     <div className="card">
-      {props.children}
+      <a className="no-link" target="_blank" href={props.link || "#"}>{props.children}</a>
     </div>
   );
 }

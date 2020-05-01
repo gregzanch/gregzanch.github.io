@@ -1,13 +1,24 @@
 import React from "react";
-
+import Post from "../post/post";
+import PROJECTS from '../../projects';
 export interface ProjectsProps {
-	visible: boolean;
+
 }
 
 export default function Projects(props: ProjectsProps) {
 	return (
-		<div className={props.visible ? "visible" : "hidden"}>
-			<div>Projects</div>
-		</div>
-	);
+    <div id="projects">
+      {PROJECTS.map((post) => {
+        return (
+          <Post
+            key={post.link}
+            title={post.title}
+            description={post.description}
+            link={post.link}
+            thumbnail={post.thumbnail}
+          />
+        );
+      })}
+    </div>
+  );
 }

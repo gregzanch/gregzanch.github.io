@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import background from './res/cold-leaves-background-blurred.png';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect, NavLink } from "react-router-dom";
+// import background from './res/cold-leaves-background-blurred.png';
 import {
 	FontAwesomeIcon
 } from "@fortawesome/react-fontawesome";
@@ -11,14 +12,15 @@ import {
 import {
 	faEnvelope,
 	faArchive,
-	faGlobe,
+	// faGlobe,
 	faUser,
-	// faFileAlt,
+	faHome,
 	faBookmark
+	// faFileAlt,
 	// faLayerGroup
 } from '@fortawesome/free-solid-svg-icons';
 import Home from "./components/views/home";
-import About from "./components/views/about";
+import Contact from "./components/views/contact";
 import Projects from "./components/views/projects";
 import Resources from "./components/views/resources";
 import Posts from "./components/views/posts";
@@ -28,87 +30,86 @@ import './App.css';
 interface IRouteLink {
 	text: string;
 	icon?: IconDefinition;
-	onClick: (e: React.MouseEvent) => void;
 }
 
 function RouteLink(props: IRouteLink) {
+	// let containerClassName = "route-link";
 	return (
-		<div className="route-link">
-			<button className="icon-link" id={props.text.toLowerCase()} onClick={props.onClick}>
-				{props.icon ? <FontAwesomeIcon icon={props.icon} size="sm" /> : ""}
+		// <div className={containerClassName}>
+			<NavLink
+				to={"/" + props.text.toLowerCase()}
+				className="icon-link route-link"
+				activeClassName="route-link-active"
+				id={props.text.toLowerCase()}>
+				{props.icon ? (
+					<FontAwesomeIcon icon={props.icon} size="sm" />
+				) : (
+					""
+				)}
 				<div className="icon-link-text">{props.text}</div>
-			</button>
-		</div>
+			</NavLink>
+		// </div>
 	);
 }
 
 function App() {
-	const [view, setView] = useState("home");
-	const routeLinkHander = (e: React.MouseEvent) => {
-		setView(e.currentTarget.id || "home");
-	}
-  return (
-		<div className="App">
-			<img
-				src={background}
-				alt="cold-leaves"
-				className="background-image"
-			/>
+	return (
+		<Router>
+			<div className="App">
+				<div className="route-links">
+					<RouteLink text="Home" icon={faHome} />
+					<RouteLink text="Projects" icon={faArchive} />
+					<RouteLink text="Posts" icon={faBookmark} />
+					{/* <RouteLink text="Resources" icon={faGlobe} /> */}
+					<RouteLink text="Contact" icon={faUser} />
+				</div>
 
-			<div className="route-links">
-				<RouteLink
-					text="About"
-					icon={faUser}
-					onClick={routeLinkHander}
-				/>
-				<RouteLink
-					text="Projects"
-					icon={faArchive}
-					onClick={routeLinkHander}
-				/>
-				<RouteLink
-					text="Posts"
-					icon={faBookmark}
-					onClick={routeLinkHander}
-				/>
-				<RouteLink
-					text="Resources"
-					icon={faGlobe}
-					onClick={routeLinkHander}
-				/>
+				<div className="view-wrapper">
+					<Switch>
+						<Route path="/home">
+							<Home />
+						</Route>
+						<Route path="/contact">
+							<Contact />
+						</Route>
+						<Route path="/projects">
+							<Projects />
+						</Route>
+						<Route path="/posts">
+							<Posts />
+						</Route>
+						{/* <Route path="/resources">
+							<Resources />
+						</Route> */}
+					</Switch>
+				</div>
+
+				<div className="connect">
+					<a
+						href="mailto:zanchelli.greg@gmail.com"
+						className="icon-link"
+						target="_blank"
+						rel="noopener noreferrer">
+						<FontAwesomeIcon icon={faEnvelope} size="1x" />
+					</a>
+					<a
+						href="https://github.com/gregzanch"
+						className="icon-link"
+						target="_blank"
+						rel="noopener noreferrer">
+						<FontAwesomeIcon icon={faGithub} size="1x" />
+					</a>
+					<a
+						href="https://www.linkedin.com/in/greg-zanchelli-40268a190/"
+						className="icon-link"
+						target="_blank"
+						rel="noopener noreferrer">
+						<FontAwesomeIcon icon={faLinkedin} size="1x" />
+					</a>
+				</div>
 			</div>
-			<div className="view-wrapper">
-				<Home visible={view === "home"} />
-				<About visible={view === "about"} />
-				<Projects visible={view === "projects"} />
-				<Posts visible={view === "posts"} />
-				<Resources visible={view === "resources"} />
-			</div>
-			<div className="connect">
-				<a
-					href="mailto:zanchelli.greg@gmail.com"
-					className="icon-link"
-					target="_blank"
-					rel="noopener noreferrer">
-					<FontAwesomeIcon icon={faEnvelope} size="1x" />
-				</a>
-				<a
-					href="https://github.com/gregzanch"
-					className="icon-link"
-					target="_blank"
-					rel="noopener noreferrer">
-					<FontAwesomeIcon icon={faGithub} size="1x" />
-				</a>
-				<a
-					href="https://www.linkedin.com/in/greg-zanchelli-40268a190/"
-					className="icon-link"
-					target="_blank"
-					rel="noopener noreferrer">
-					<FontAwesomeIcon icon={faLinkedin} size="1x" />
-				</a>
-			</div>
-		</div>
-  );
+		</Router>
+	);
 }
 
 export default App;
